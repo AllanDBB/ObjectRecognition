@@ -1,45 +1,57 @@
-import { Tabs } from 'expo-router';
+import { Drawer } from 'expo-router/drawer';
 import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { IconSymbol } from '@/components/ui/IconSymbol';
+import { BackHandler } from 'react-native';
 
-export default function TabLayout() {
+export default function DrawerLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
+    <Drawer
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        drawerActiveTintColor: 'white', 
+        drawerInactiveTintColor: 'gray', 
+        drawerLabelStyle: { fontSize: 16, fontWeight: 'bold' }, 
+        drawerStyle: { backgroundColor: '#1e1e1e', width: 250 }, 
+        headerStyle: { backgroundColor: '#3A61C2' }, 
+        headerTintColor: 'white', 
       }}>
-      <Tabs.Screen
+      <Drawer.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          drawerIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
-      <Tabs.Screen
+      <Drawer.Screen
         name="camera"
         options={{
           title: 'Camera',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          drawerIcon: ({ color }) => <IconSymbol size={28} name="camera.fill" color={color} />,
         }}
       />
-    </Tabs>
+        <Drawer.Screen
+        name="stores"
+        options={{
+          title: 'Tiendas',
+          drawerIcon: ({ color }) => <IconSymbol size={28} name="map.fill" color={color} />,
+        }}
+      />
+      
+      <Drawer.Screen
+        name="close"
+        options={{
+          title: 'Cerrar',
+          drawerIcon: ({ color }) => <IconSymbol size={28} name="xmark.circle.fill" color={color} />,
+  
+          drawerItemStyle: { marginTop: 'auto' }, 
+          drawerLabelStyle: { color: 'red' }, 
+          headerShown: false, 
+        }}
+      />
+      
+    </Drawer>
   );
 }

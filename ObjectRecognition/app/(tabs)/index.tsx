@@ -7,8 +7,8 @@ export default function InitScreen() {
       style={{width: 300, height: 300}}/>
 
       <Text style={styles.title}>¡BIENVENIDO!</Text>
-      <Text style={styles.title}>ObjectRecognition</Text>
-      <Text style={styles.subtitle}>¡Identifica entre distintas clases de bultos con solo tu cámara!</Text>
+      <Text style={styles.title}>BackPack APP</Text>
+      <Text style={styles.subtitle}>¡Identifica y busca distintos tipos de bolsos!</Text>
       
 
     </View>
